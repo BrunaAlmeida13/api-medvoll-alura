@@ -32,7 +32,7 @@ public class Usuario implements UserDetails {
         return List.of(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"));
     }
 
-    //
+    //m
     @Override
     public String getPassword() {
         return senha;
