@@ -26,11 +26,16 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticadao dados) {
-        var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha()); //converte para o dto do spring
-        var authentication = manager.authenticate(authenticationToken); //devolve um objeto que representa um usuário autenticado
+        try {
+            var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha()); //converte para o dto do spring
+            var authentication = manager.authenticate(authenticationToken); //devolve um objeto que representa um usuário autenticado
 
-        //.getPrincipal() - pegando o usuário logado
-        var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
-        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+            //.getPrincipal() - pegando o usuário logado
+            var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+            return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

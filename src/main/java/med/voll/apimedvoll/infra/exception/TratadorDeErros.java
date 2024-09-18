@@ -7,7 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice
+@RestControllerAdvice //Spring chama essa classe automaticamente
 public class TratadorDeErros {
 
     //EntityNotFoundException - para o findById() - id não encontrado
