@@ -26,7 +26,7 @@ public class SecurityConfigurations {
         return http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST, "/login").permitAll() //Qualquer requisição POST para o endpoint /login
+                .requestMatchers(HttpMethod.POST, "/vollmed/api/login").permitAll() //Qualquer requisição POST para o endpoint /login
                 // é permitida sem necessidade de autenticação
                 .anyRequest().authenticated() //Essa linha garante que todas as outras requisições, exceto o /login, exijam que o usuário esteja autenticado.
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) //setta as ordens dos filtros (primeiro o meu filtro, depois o do spring)

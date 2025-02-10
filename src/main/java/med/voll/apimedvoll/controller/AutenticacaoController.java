@@ -1,7 +1,7 @@
 package med.voll.apimedvoll.controller;
 
 import jakarta.validation.Valid;
-import med.voll.apimedvoll.domain.usuario.DadosAutenticadao;
+import med.voll.apimedvoll.domain.usuario.DadosAutenticacao;
 import med.voll.apimedvoll.domain.usuario.Usuario;
 import med.voll.apimedvoll.infra.security.DadosTokenJWT;
 import med.voll.apimedvoll.infra.security.TokenService;
@@ -25,7 +25,7 @@ public class AutenticacaoController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticadao dados) {
+    public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
         try {
             var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha()); //converte para o dto do spring
             var authentication = manager.authenticate(authenticationToken); //devolve um objeto que representa um usuário autenticado
