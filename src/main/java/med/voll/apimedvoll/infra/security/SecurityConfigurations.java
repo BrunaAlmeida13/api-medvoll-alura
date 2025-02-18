@@ -26,8 +26,12 @@ public class SecurityConfigurations {
         return http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST, "/vollmed/api/login").permitAll() //Qualquer requisição POST para o endpoint /login
-                // é permitida sem necessidade de autenticação
+                /* Qualquer requisição POST para o endpoint '/login'
+                 * é permitida sem necessidade de autenticação */
+                .requestMatchers(HttpMethod.POST, "/vollmed/api/login").permitAll()
+                /* '/**' é para liberar subendereços dessas urls; Pode-se colocar multiplos endereços em um requestMatchers;
+                 * Aqui tornará público o acesso ao link da documentação do projeto. */
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                 .anyRequest().authenticated() //Essa linha garante que todas as outras requisições, exceto o /login, exijam que o usuário esteja autenticado.
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) //setta as ordens dos filtros (primeiro o meu filtro, depois o do spring)
                 .build();
