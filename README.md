@@ -6,6 +6,18 @@ Projeto desenvolvido durante a formação **Java e Spring Boot**.
 - Você pode gerar a senha utilizando o seguinte site:
 [Gerador de Senha Hash](https://bcrypt-generator.com/)
 
+# *Tecnologias utilizadas*
+
+- Java 17
+- Spring Boot 3
+- Spring Data JPA
+- Spring Security (com Bcrypt para validação de senhas)
+- SpringDoc OpenAPI
+- JSON Web Token (JWT)
+- Lombok
+- Flyway
+- MariaDB
+
 # **Requisições**
 
 ## **Autenticação**
